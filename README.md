@@ -1,39 +1,49 @@
-# OpenClaw ConfigGen (WIP)
+# OpenClaw Config Lint
 
-Generate a safe, working `openclaw.json` from a short questionnaire.
+A **CI-friendly static linter** for OpenClaw config files (usually `openclaw.json`).
 
-## MVP
-- Input: a minimal set of answers (channels, DM policy, model/auth choice, sandboxing preference)
-- Output: `openclaw.json` + a short "why" explanation + warnings
-- Validate: run a static linter over the generated config and report common foot-guns
+Think: **ESLint for `openclaw.json`**.
 
-## Why
-Docs exist, but people still fail at:
-- picking the right dmPolicy + allowlists
-- mixing OAuth/API keys/fallbacks incorrectly
-- exposing dashboard / bind settings unsafely
-- channel-specific gotchas
+> 中文说明：见 [README.zh-CN.md](./README.zh-CN.md)
 
-## CLI (current)
-- `openclaw-configgen rules` → print rule ids
-- `openclaw-configgen explain` → print rule docs (generated)
-- `openclaw-configgen lint <config.json> [--format json]` → lint an existing config
+## What it does
+- Checks common config foot-guns **before** you start OpenClaw
+- Outputs either **human-readable text** or **machine-readable JSON** (for CI)
 
-## Rules source of truth
-- Single source of truth: `rules.json`
-- Generated docs: `lint-rules.md`
-  - Regenerate: `npm run gen:docs`
+## Typical things it catches
+- Cron mistakes: invalid schedule, missing `expr`/`tz`, duplicate job names
+- Cron logic mistakes: `sessionTarget` vs `payload.kind` mismatch
+- Missing core sections when you expect a full config (`gateway` / `heartbeat`)
+- Obvious security risks (e.g. plaintext `token` / `secret`)
 
-## One-liner
-- Text output:
-  - `npm run lint:config -- path/to/openclaw.json`
-- JSON output (CI-friendly):
-  - `npm run lint:config:json -- path/to/openclaw.json --format json`
+## Install
+```bash
+npm ci
+```
 
-Both run `gen:docs` first.
+## Use
+### Local (text)
+```bash
+node bin/openclaw-configgen.js lint /path/to/openclaw.json
+```
 
-## Planned CLI
-- `openclaw-configgen init` → interactive prompts, writes openclaw.json
+### CI (JSON)
+```bash
+node bin/openclaw-configgen.js lint /path/to/openclaw.json --format json
+```
 
-## Status
-WIP, local-only for now. When it feels usable: publish on GitHub as open source.
+## Useful commands
+```bash
+# list rules
+node bin/openclaw-configgen.js rules
+node bin/openclaw-configgen.js rules --category security
+
+# verify the linter itself
+npm run selftest
+```
+
+## GitHub Actions
+Copy `examples/github-action.yml` → `.github/workflows/config-lint.yml`.
+
+## License
+Apache-2.0
