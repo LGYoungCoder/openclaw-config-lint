@@ -1,0 +1,128 @@
+[
+  {
+    "id": "OC_CFG_001",
+    "name": "unknown_top_level_keys",
+    "category": "core",
+    "severity": "warn",
+    "fix": "Remove unknown keys or move them to the correct section per schema/examples."
+  },
+  {
+    "id": "OC_CFG_002",
+    "name": "missing_required_sections",
+    "category": "core",
+    "severity": "warn",
+    "fix": "Ensure the file is an OpenClaw config; include key sections like cron/gateway/heartbeat/channels/plugins."
+  },
+  {
+    "id": "OC_CFG_003",
+    "name": "invalid_schedule_every_ms",
+    "category": "cron",
+    "severity": "warn",
+    "fix": "Set schedule.everyMs to a sensible positive integer (ms). Avoid too-frequent schedules unless intended."
+  },
+  {
+    "id": "OC_CFG_004",
+    "name": "cron_job_payload_sessionTarget_mismatch",
+    "category": "cron",
+    "severity": "error",
+    "fix": "Match sessionTarget and payload.kind: main→systemEvent, isolated→agentTurn."
+  },
+  {
+    "id": "OC_CFG_005",
+    "name": "cron_job_missing_tz",
+    "category": "cron",
+    "severity": "warn",
+    "fix": "Set schedule.tz explicitly (e.g., Asia/Shanghai) to avoid timezone drift."
+  },
+  {
+    "id": "OC_CFG_006",
+    "name": "duplicate_job_names_or_ids",
+    "category": "cron",
+    "severity": "error",
+    "fix": "Make cron job names/ids unique to avoid confusion and unexpected overrides."
+  },
+  {
+    "id": "OC_CFG_007",
+    "name": "missing_webhook_auth_or_secret",
+    "category": "security",
+    "severity": "error",
+    "fix": "Configure a strong secret/token for inbound webhooks and avoid committing it to public repos."
+  },
+  {
+    "id": "OC_CFG_008",
+    "name": "plaintext_tokens_in_config",
+    "category": "security",
+    "severity": "error",
+    "fix": "Move secrets to env vars or a secrets manager; commit only .env.example / placeholders."
+  },
+  {
+    "id": "OC_CFG_009",
+    "name": "channel_missing_required_fields",
+    "category": "core",
+    "severity": "error",
+    "fix": "Fill required channel/plugin fields (token/chatId/etc.) as per plugin docs."
+  },
+  {
+    "id": "OC_CFG_010",
+    "name": "file_paths_outside_workspace_or_nonexistent",
+    "category": "core",
+    "severity": "warn",
+    "fix": "Use workspace-relative paths and ensure referenced files/directories exist."
+  },
+  {
+    "id": "OC_CFG_011",
+    "name": "cron_only_partial_config",
+    "category": "compat",
+    "severity": "warn",
+    "fix": "If this is a cron-only snippet, merge it into a full OpenClaw config (with gateway/heartbeat/channels/plugins) before linting."
+  },
+  {
+    "id": "OC_CFG_012",
+    "name": "top_level_cronJobs_compat",
+    "category": "compat",
+    "severity": "warn",
+    "fix": "Prefer cron.jobs. If you have a legacy config/snippet, move cronJobs under cron.jobs for consistency."
+  },
+  {
+    "id": "OC_CFG_013",
+    "name": "missing_gateway_section",
+    "category": "core",
+    "severity": "warn",
+    "fix": "Add a gateway section (or generate a baseline config) so OpenClaw can run reliably."
+  },
+  {
+    "id": "OC_CFG_014",
+    "name": "missing_heartbeat_section",
+    "category": "core",
+    "severity": "warn",
+    "fix": "Add a heartbeat section (or generate a baseline config) so scheduled checks/reminders can run."
+  },
+  {
+    "id": "OC_CFG_015",
+    "name": "cron_missing_expr",
+    "category": "cron",
+    "severity": "error",
+    "fix": "For schedule.kind=cron, set a non-empty schedule.expr string (e.g. \"0 9 * * 1\")."
+  },
+  {
+    "id": "OC_CFG_016",
+    "name": "top_level_jobs_fallback",
+    "category": "compat",
+    "severity": "warn",
+    "fix": "Prefer cron.jobs. If you used a top-level jobs array/object, move it under cron.jobs to avoid ambiguity."
+  },
+  {
+    "id": "OC_CFG_017",
+    "name": "feishu_groupPolicy_open",
+    "category": "security",
+    "severity": "warn",
+    "fix": "If you use Feishu groups, set channels.feishu.groupPolicy=allowlist and configure groupAllowFrom to restrict who can trigger the bot."
+  },
+  {
+    "id": "OC_CFG_018",
+    "name": "duplicate_plugin_ids",
+    "category": "core",
+    "severity": "warn",
+    "fix": "Ensure each plugins.entries item has a unique id; remove duplicates or rename one of them."
+  }
+]

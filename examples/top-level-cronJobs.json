@@ -1,0 +1,11 @@
+{
+  "cronJobs": [
+    {
+      "id": "jobA",
+      "name": "dup",
+      "sessionTarget": "main",
+      "payload": { "kind": "agentTurn", "message": "oops" },
+      "schedule": { "kind": "every", "everyMs": 1000 }
+    }
+  ]
+}

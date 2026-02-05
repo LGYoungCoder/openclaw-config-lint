@@ -1,0 +1,24 @@
+{
+  "cron": {
+    "jobs": {
+      "tinyEvery": {
+        "name": "too-fast",
+        "schedule": { "kind": "every", "everyMs": 1000 },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      },
+      "badEvery": {
+        "name": "bad-everyms",
+        "schedule": { "kind": "every", "everyMs": -5 },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      },
+      "cronNoTz": {
+        "name": "no-tz",
+        "schedule": { "kind": "cron", "expr": "0 9 * * 1" },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      }
+    }
+  }
+}

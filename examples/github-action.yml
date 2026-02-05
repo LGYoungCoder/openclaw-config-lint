@@ -1,0 +1,45 @@
+# Example GitHub Actions workflow (copy into .github/workflows/configgen-lint.yml)
+# Purpose: run openclaw-configgen lint in CI and output machine-readable JSON.
+
+name: openclaw-configgen-lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Option A: if this repo contains products/openclaw-configgen/
+      - name: Install
+        working-directory: products/openclaw-configgen
+        run: npm ci
+
+      - name: Selftest (examples)
+        working-directory: products/openclaw-configgen
+        run: npm run selftest
+
+      # Example: run lint on a real config in your repo
+      # Convention suggestion:
+      # - Put your OpenClaw config at repo root: ./openclaw.json
+      # - Or change this path to wherever you keep it.
+      - name: Run config lint (text + JSON) if ./openclaw.json exists
+        run: |
+          if [ -f ./openclaw.json ]; then
+            echo "== Lint (text) =="
+            node products/openclaw-configgen/bin/openclaw-configgen.js lint ./openclaw.json
+            echo "== Lint (JSON) =="
+            node products/openclaw-configgen/bin/openclaw-configgen.js lint ./openclaw.json --format json
+          else
+            echo "Skip: ./openclaw.json not found"
+          fi
+
+      # Tip: fail the job when exit code is non-zero (default behavior)

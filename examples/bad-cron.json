@@ -1,0 +1,16 @@
+{
+  "cron": {
+    "jobs": {
+      "jobA": {
+        "name": "LT001 heartbeat every 10 min",
+        "sessionTarget": "main",
+        "payload": { "kind": "agentTurn", "message": "oops" }
+      },
+      "jobB": {
+        "name": "LT001 heartbeat every 10 min",
+        "sessionTarget": "isolated",
+        "payload": { "kind": "systemEvent", "text": "oops" }
+      }
+    }
+  }
+}

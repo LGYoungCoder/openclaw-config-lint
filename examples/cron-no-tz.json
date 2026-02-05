@@ -1,0 +1,12 @@
+{
+  "cron": {
+    "jobs": {
+      "cronNoTz": {
+        "name": "no-tz",
+        "schedule": { "kind": "cron", "expr": "0 9 * * 1" },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      }
+    }
+  }
+}

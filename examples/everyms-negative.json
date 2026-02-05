@@ -1,0 +1,12 @@
+{
+  "cron": {
+    "jobs": {
+      "badEvery": {
+        "name": "bad-everyms",
+        "schedule": { "kind": "every", "everyMs": -5 },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      }
+    }
+  }
+}

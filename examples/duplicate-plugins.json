@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "entries": [
+      { "id": "feishu", "enabled": true },
+      { "id": "feishu", "enabled": true }
+    ]
+  }
+}

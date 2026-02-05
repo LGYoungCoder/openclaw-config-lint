@@ -1,0 +1,72 @@
+{
+  "cases": [
+    {
+      "file": "examples/bad-cron.json",
+      "expectIds": ["OC_CFG_004", "OC_CFG_006"]
+    },
+    {
+      "file": "examples/bad-schedule.json",
+      "expectIds": ["OC_CFG_003", "OC_CFG_005"]
+    },
+    {
+      "file": "examples/bad-cron-expr.json",
+      "expectIds": ["OC_CFG_015"]
+    },
+    {
+      "file": "examples/feishu-group-open.json",
+      "expectIds": ["OC_CFG_017"]
+    },
+    {
+      "file": "examples/duplicate-plugins.json",
+      "expectIds": ["OC_CFG_018"]
+    },
+    {
+      "file": "examples/array-jobs.json",
+      "expectIds": ["OC_CFG_004", "OC_CFG_006", "OC_CFG_003", "OC_CFG_005"]
+    },
+    {
+      "file": "examples/top-level-cronJobs.json",
+      "expectIds": ["OC_CFG_011", "OC_CFG_012"],
+      "forbidIds": ["OC_CFG_013", "OC_CFG_014"]
+    },
+    {
+      "file": "examples/top-level-jobs.json",
+      "expectIds": ["OC_CFG_011", "OC_CFG_016"],
+      "forbidIds": ["OC_CFG_013", "OC_CFG_014"]
+    },
+    {
+      "file": "examples/missing-gateway.json",
+      "expectIds": ["OC_CFG_013"]
+    },
+    {
+      "file": "examples/missing-heartbeat.json",
+      "expectIds": ["OC_CFG_014"]
+    },
+    {
+      "file": "examples/plaintext-token.json",
+      "expectIds": ["OC_CFG_008"]
+    },
+    {
+      "file": "examples/plaintext-secret-nested.json",
+      "expectIds": ["OC_CFG_008"]
+    },
+    {
+      "file": "examples/cron-no-tz.json",
+      "expectIds": ["OC_CFG_005"]
+    },
+    {
+      "file": "examples/everyms-negative.json",
+      "expectIds": ["OC_CFG_003"]
+    },
+    {
+      "file": "examples/duplicate-job-names.json",
+      "expectIds": ["OC_CFG_006"]
+    }
+  ],
+  "ruleFilters": [
+    {
+      "category": "security",
+      "expectIds": ["OC_CFG_017"]
+    }
+  ]
+}

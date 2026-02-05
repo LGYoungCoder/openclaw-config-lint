@@ -1,0 +1,18 @@
+{
+  "cron": {
+    "jobs": {
+      "jobA": {
+        "name": "dup-name",
+        "schedule": { "kind": "every", "everyMs": 60000 },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      },
+      "jobB": {
+        "name": "dup-name",
+        "schedule": { "kind": "every", "everyMs": 60000 },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      }
+    }
+  }
+}

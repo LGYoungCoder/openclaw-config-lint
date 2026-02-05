@@ -1,0 +1,20 @@
+{
+  "cron": {
+    "jobs": [
+      {
+        "id": "jobA",
+        "name": "dup",
+        "sessionTarget": "main",
+        "payload": { "kind": "agentTurn", "message": "oops" },
+        "schedule": { "kind": "every", "everyMs": 1000 }
+      },
+      {
+        "id": "jobB",
+        "name": "dup",
+        "sessionTarget": "isolated",
+        "payload": { "kind": "systemEvent", "text": "oops" },
+        "schedule": { "kind": "cron", "expr": "0 9 * * 1" }
+      }
+    ]
+  }
+}

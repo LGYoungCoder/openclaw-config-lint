@@ -1,0 +1,18 @@
+{
+  "cron": {
+    "jobs": {
+      "noExpr": {
+        "name": "missing-expr",
+        "schedule": { "kind": "cron" },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      },
+      "blankExpr": {
+        "name": "blank-expr",
+        "schedule": { "kind": "cron", "expr": "   " },
+        "sessionTarget": "main",
+        "payload": { "kind": "systemEvent", "text": "hi" }
+      }
+    }
+  }
+}
